@@ -1,5 +1,6 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Optional
+import os
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
@@ -7,7 +8,7 @@ from passlib.context import CryptContext
 from pydantic import BaseModel
 
 # JWT Configuration
-SECRET_KEY = "your-secret-key-change-this-in-production"
+SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-change-this-in-production")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_SECONDS = 300
 
@@ -20,11 +21,15 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 # FastAPI app
 app = FastAPI(title="JWT Authentication API", version="1.0.0")
 
+# Pre-computed password hash for admin user
+# Password: admin123
+ADMIN_PASSWORD_HASH = "$2b$12$xcDzx5/4yi6OCI/SRTfx3e6/ZwrSuxXr0O56sN8RgbGDiE5r/nPQC"
+
 # User database (hardcoded for this example)
 fake_users_db = {
     "admin": {
         "username": "admin",
-        "hashed_password": pwd_context.hash("admin123"),
+        "hashed_password": ADMIN_PASSWORD_HASH,
     }
 }
 
@@ -72,9 +77,9 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     """Create a JWT access token."""
     to_encode = data.copy()
     if expires_delta:
-        expire = datetime.utcnow() + expires_delta
+        expire = datetime.now(timezone.utc) + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(seconds=ACCESS_TOKEN_EXPIRE_SECONDS)
+        expire = datetime.now(timezone.utc) + timedelta(seconds=ACCESS_TOKEN_EXPIRE_SECONDS)
     
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)

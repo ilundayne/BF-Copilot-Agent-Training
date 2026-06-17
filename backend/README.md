@@ -140,6 +140,14 @@ backend/
 
 ## Configuración
 
+### Variables de Entorno
+
+La aplicación soporta las siguientes variables de entorno:
+
+- `SECRET_KEY`: Clave secreta para firmar tokens JWT (obligatorio cambiar en producción)
+  - Por defecto: `your-secret-key-change-this-in-production`
+  - Ejemplo: `export SECRET_KEY="tu-clave-super-secreta-y-aleatoria"`
+
 ### Dependencias Principales
 
 - **FastAPI**: Framework web moderno y rápido
