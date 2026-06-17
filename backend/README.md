@@ -44,6 +44,11 @@ cd backend
 docker-compose up --build
 ```
 
+Para usar una SECRET_KEY personalizada:
+```bash
+SECRET_KEY="tu-clave-super-secreta" docker-compose up --build
+```
+
 La aplicación estará disponible en `http://localhost:8000`
 
 ## Endpoints de la API
