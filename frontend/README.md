@@ -13,7 +13,7 @@ Esta es una aplicación web frontend construida con React y Material-UI que se i
 
 ## Tecnologías Utilizadas
 
-- **React 18**: Biblioteca principal para la UI
+- **React 19**: Biblioteca principal para la UI
 - **Vite**: Build tool y dev server
 - **React Router**: Navegación entre páginas
 - **Material-UI (MUI)**: Framework de diseño
@@ -21,7 +21,7 @@ Esta es una aplicación web frontend construida con React y Material-UI que se i
 
 ## Requisitos Previos
 
-- Node.js 16 o superior
+- Node.js 18 o superior
 - npm o yarn
 - Backend ejecutándose en `http://localhost:8000`
 

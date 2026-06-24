@@ -49,7 +49,7 @@ BF-Copilot-Agent-Training/
 ### Prerrequisitos
 
 - **Backend**: Python 3.9+, Docker (opcional), Poetry
-- **Frontend**: Node.js 16+, npm
+- **Frontend**: Node.js 18+, npm
 
 ### 1. Iniciar el Backend
 
@@ -195,7 +195,7 @@ Ver [frontend/README.md](frontend/README.md) para:
 - Docker
 
 ### Frontend
-- React 18
+- React 19
 - Vite
 - React Router
 - Material-UI (MUI)
